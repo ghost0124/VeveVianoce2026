@@ -40,21 +40,6 @@
 
   <svg viewBox="0 0 300 300" class="pasta-sky">
 
-    <!-- Plate-shaped outer constellation -->
-    <circle cx="150" cy="150" r="135" class="plate-outline"/>
-    <circle cx="150" cy="150" r="120" class="plate-inner-line"/>
-
-    <!-- Tangled spaghetti strands -->
-    <g class="noodles">
-        @for (line of pastaLines; track $index) {
-            <polyline
-            [attr.points]="line.points"
-            class="noodle-line"
-            [style.animationDelay.s]="($index % 8) * 0.3">
-            </polyline>
-        }
-    </g>
-
     <!-- Individual constellation stars -->
     <g class="pasta-stars">
       @for (star of pastaStars; track $index) {
