@@ -1,0 +1,107 @@
+<div class="scene">
+
+  <!-- Background image -->
+  <div class="background"></div>
+
+  <!-- Dark overlay -->
+  <div class="overlay"></div>
+
+  <!-- Stars -->
+  @for (star of backgroundStars; track $index) {
+    <div
+      class="background-star"
+      [style.left.%]="star.x"
+      [style.top.%]="star.y"
+      [style.width.px]="star.size"
+      [style.height.px]="star.size"
+      [style.opacity]="star.opacity"
+      [style.animationDelay.s]="star.delay"
+      [style.animationDuration.s]="star.duration">
+    </div>
+  }
+
+  <!-- Snow -->
+ <div class="snow-container">
+  @for (snow of snowflakes; track $index) {
+    <div
+      class="snowflake"
+      [style.left.%]="snow.x"
+      [style.animationDuration.s]="snow.speed"
+      [style.animationDelay.s]="snow.delay"
+      [style.fontSize.px]="snow.size"
+      [style.opacity]="snow.opacity">
+      ❄
+    </div>
+  }
+</div>
+
+
+<div class="spaghetti-constellation">
+
+  <svg viewBox="0 0 300 300" class="pasta-sky">
+
+    <!-- Plate-shaped outer constellation -->
+    <circle cx="150" cy="150" r="135" class="plate-outline"/>
+    <circle cx="150" cy="150" r="120" class="plate-inner-line"/>
+
+    <!-- Tangled spaghetti strands -->
+    <g class="noodles">
+        @for (line of pastaLines; track $index) {
+            <polyline
+            [attr.points]="line.points"
+            class="noodle-line"
+            [style.animationDelay.s]="($index % 8) * 0.3">
+            </polyline>
+        }
+    </g>
+
+    <!-- Individual constellation stars -->
+    <g class="pasta-stars">
+      @for (star of pastaStars; track $index) {
+        <circle
+          [attr.cx]="star.x"
+          [attr.cy]="star.y"
+          [attr.r]="star.size"
+          [style.animationDelay.s]="star.delay"/>
+      }
+    </g>
+
+  </svg>
+
+</div>
+
+
+  <!-- Content -->
+  <div class="content">
+
+    <h1>❤️ Our First Christmas Together ❤️</h1>
+
+    
+    <button class="letter-button" (click)="showLetter = !showLetter">
+      @if (showLetter) {
+            💌 Close the Gift
+        } @else {
+            🎁 Open My Gift
+    }
+    </button>
+
+    @if(showLetter){
+
+        <p>
+            Even winter feels like summer with you. <br>
+            (Hrm hrm, Sheldon here, in case you don't undertand) <br>
+            That's because you're so hot.
+        </p>
+
+      <div class="letter-image">
+        <img src="/assets/ja_a_veve.jpg" alt="Our special memory">
+    </div>
+    }
+
+   
+
+    <app-together-counter startDate="2026-07-22"></app-together-counter>
+
+  </div>
+
+</div>

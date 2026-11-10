@@ -1,0 +1,437 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+}
+
+body {
+  background: #071629;
+overflow-y: auto;
+
+}
+
+/* FULL SCREEN SCENE */
+
+.scene {
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    overflow: clip;
+    background: #071629;
+}
+
+/* WINTER BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+
+    background-image: url('/assets/winter-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transform: scale(1.05);
+    animation: slowZoom 45s linear infinite;
+
+    z-index: -2;
+    pointer-events: none;
+}
+
+
+@keyframes slowZoom {
+
+  0% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1.15);
+  }
+
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0,10,30,.55),
+        rgba(0,20,50,.4),
+        rgba(0,0,0,.6)
+    );
+
+    backdrop-filter: brightness(.95);
+
+    z-index: -1;
+    pointer-events: none;
+}
+
+.star {
+
+  position: absolute;
+
+  width: 2px;
+  height: 2px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  box-shadow:
+    0 0 10px white;
+
+  animation:
+    twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+
+  0%,100% {
+    opacity: .1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+}
+
+.snow-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.snowflake {
+  position: absolute;
+  top: -30px;
+
+  color: #fff;
+  font-family: Arial, sans-serif;
+
+  text-shadow:
+    0 0 5px white,
+    0 0 12px #a8dcff,
+    0 0 20px #dff5ff;
+
+  animation: snowfall linear infinite;
+  will-change: transform;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(0, -30px, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate3d(25px, 25vh, 0) rotate(90deg);
+  }
+
+  50% {
+    transform: translate3d(-20px, 50vh, 0) rotate(180deg);
+  }
+
+  75% {
+    transform: translate3d(30px, 75vh, 0) rotate(270deg);
+  }
+
+  100% {
+    transform: translate3d(-10px, 110vh, 0) rotate(360deg);
+  }
+}
+
+.content {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 100px 15px 100px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+    color: white;
+
+    z-index: 50;
+}
+
+h1 {
+
+  font-size: 5rem;
+
+  text-shadow:
+    0 0 20px rgba(255,255,255,.8),
+    0 0 60px rgba(255,255,255,.4);
+
+  margin-bottom: 20px;
+}
+
+p {
+
+  font-size: 1.5rem;
+
+  margin-bottom: 30px;
+
+  text-shadow:
+    0 0 20px black;
+}
+
+.spaghetti-constellation {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: 5px;
+  bottom: 15px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.pasta-sky {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.plate-outline {
+  fill: rgba(180, 220, 255, .025);
+  stroke: rgba(190, 230, 255, .65);
+  stroke-width: 1.2;
+  filter: drop-shadow(0 0 5px #a8dcff);
+}
+
+.plate-inner-line {
+  fill: none;
+  stroke: rgba(190, 230, 255, .35);
+  stroke-width: .7;
+  stroke-dasharray: 2 4;
+}
+
+/* Dense spaghetti connections */
+
+.noodle-line {
+  fill: none;
+  stroke: #c5e8ff;
+  stroke-width: .9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .65;
+
+  filter: drop-shadow(0 0 3px #8acaff);
+
+  animation: noodleGlow 4s ease-in-out infinite alternate;
+}
+
+/* Lots of little stars */
+
+.pasta-stars circle {
+  fill: white;
+
+  filter:
+    drop-shadow(0 0 3px white)
+    drop-shadow(0 0 7px #8bd5ff);
+
+  animation: pastaTwinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes noodleGlow {
+  from { opacity: .3; }
+  to { opacity: .85; }
+}
+
+@keyframes pastaTwinkle {
+  from {
+    opacity: .3;
+    transform: scale(.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+@media (max-width: 600px) {
+  .spaghetti-constellation {
+    width: 190px;
+    height: 190px;
+    right: 5px;
+    bottom: 10px;
+  }
+}
+
+.background-stars {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+/* Individual stars */
+
+.background-star {
+    position: absolute;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 3px #ffffff,
+        0 0 7px #b8e5ff,
+        0 0 12px rgba(130, 200, 255, .8);
+
+    animation: starTwinkle ease-in-out infinite alternate;
+
+    will-change: opacity, transform;
+}
+
+/* Twinkling */
+
+@keyframes starTwinkle {
+    0% {
+        opacity: .2;
+        transform: scale(.7);
+    }
+
+    50% {
+        opacity: .65;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+/* Larger sparkling stars */
+
+.background-star:nth-child(17n) {
+    box-shadow:
+        0 0 5px white,
+        0 0 12px #dff5ff,
+        0 0 22px #8acaff;
+}
+
+/* Mobile performance */
+
+@media (max-width: 600px) {
+    .background-stars {
+        opacity: .85;
+    }
+}
+
+.letter-button {
+    margin-top: 45px;
+    margin-bottom: 45px;
+
+    padding: 16px 35px;
+
+    border: 1px solid rgba(210, 240, 255, .7);
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #8acaff,
+        #477eb8,
+        #345c91
+    );
+
+    color: white;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px rgba(138, 202, 255, .4),
+        0 0 30px rgba(138, 202, 255, .2);
+
+    transition: all .3s ease;
+}
+
+.letter-button:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 0 20px rgba(180, 225, 255, .8),
+        0 0 45px rgba(138, 202, 255, .5);
+
+    background: linear-gradient(
+        135deg,
+        #b5e3ff,
+        #649bd4,
+        #477eb8
+    );
+}
+
+.letter-button:active {
+    transform: scale(.96);
+}
+
+/* Image reveal */
+
+.letter-image {
+    margin: 30px auto 45px;
+
+    max-width: 420px;
+    width: 90%;
+
+    animation: letterAppear .8s ease;
+}
+
+.letter-image img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 20px;
+
+    border: 2px solid rgba(210, 240, 255, .7);
+
+    box-shadow:
+        0 0 20px rgba(138, 202, 255, .4),
+        0 0 45px rgba(138, 202, 255, .2);
+}
+
+@keyframes letterAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
